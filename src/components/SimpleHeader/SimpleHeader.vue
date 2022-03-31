@@ -1,10 +1,27 @@
 <template>
-  <div></div>
+  <div>
+    <van-nav-bar :title="navTitle" left-arrow @click-left="onClickLeft" fixed placeholder />
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'SimpleHeader'
+  name: 'SimpleHeader',
+  props: {
+    navTitle: {
+      type: String,
+      default: ''
+    }
+  },
+  methods: {
+    onClickLeft() {
+      if (!this.back) {
+        this.$router.go(-1)
+      } else {
+        this.$router.push({ path: this.back })
+      }
+    }
+  }
 }
 </script>
 

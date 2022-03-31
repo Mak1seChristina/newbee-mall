@@ -140,9 +140,9 @@ export default {
       }
     },
     pageScroll() {
-      const height = document.querySelector('.van-swipe').offsetHeight - document.querySelector('.home-header').offsetHeight
+      // const height = document.querySelector('.van-swipe').offsetHeight - document.querySelector('.home-header').offsetHeight
       const scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-      scrollHeight > height ? (this.headerScroll = true) : (this.headerScroll = false)
+      scrollHeight > 100 ? (this.headerScroll = true) : (this.headerScroll = false)
     }
   },
   created() {
