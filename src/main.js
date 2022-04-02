@@ -7,11 +7,11 @@ import md5 from 'js-md5'
 
 import { prefix } from '@/common/js/utils.js'
 
-import { Button, NavBar, Form, Field, Toast, Tabbar, TabbarItem, Icon, Swipe, SwipeItem, Lazyload, GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant'
+import { Button, NavBar, Form, Field, Toast, Tabbar, TabbarItem, Icon, Swipe, SwipeItem, Lazyload, GoodsAction, GoodsActionIcon, GoodsActionButton, Stepper, Checkbox, CheckboxGroup, SwipeCell, SubmitBar } from 'vant'
 
 Vue.config.productionTip = false
 
-Vue.use(Button).use(NavBar).use(Form).use(Field).use(Toast).use(Tabbar).use(TabbarItem).use(Icon).use(Swipe).use(SwipeItem).use(Lazyload).use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton)
+Vue.use(Button).use(NavBar).use(Form).use(Field).use(Toast).use(Tabbar).use(TabbarItem).use(Icon).use(Swipe).use(SwipeItem).use(Lazyload).use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton).use(Stepper).use(Checkbox).use(CheckboxGroup).use(SwipeCell).use(SubmitBar)
 
 new Vue({
   router,

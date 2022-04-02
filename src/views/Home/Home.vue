@@ -47,7 +47,7 @@
 import Swiper from '@/components/Swiper/Swiper.vue'
 import GoodsItem from '@/components/GoodsItem/GoodsItem.vue'
 import { getHome } from '@/api/homeAPI.js'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Home',
@@ -124,9 +124,13 @@ export default {
     ...mapState('userAbout', ['token'])
   },
   methods: {
+    ...mapActions('cartAbout', ['updateCart']),
     async initHome() {
       if (this.token) {
         this.isLogin = true
+        try {
+          this.updateCart()
+        } catch (err) {}
       }
 
       const { data: res } = await getHome()

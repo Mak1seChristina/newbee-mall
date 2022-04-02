@@ -8,6 +8,7 @@ import Category from '@/views/Category/Category.vue'
 import Cart from '@/views/Cart/Cart.vue'
 import User from '@/views/User/User.vue'
 import ProductDetail from '@/views/ProductDetail/ProductDetail.vue'
+import CreateOrder from '@/views/CreateOrder/CreateOrder.vue'
 
 Vue.use(VueRouter)
 
@@ -31,6 +32,11 @@ const routes = [
     path: '/product/:id',
     component: ProductDetail,
     name: 'product-detail'
+  },
+  {
+    path: '/create-order',
+    component: CreateOrder,
+    name: 'create-order'
   }
 ]
 

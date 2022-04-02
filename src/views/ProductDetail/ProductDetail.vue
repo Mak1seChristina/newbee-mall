@@ -31,7 +31,7 @@
     </div>
     <van-goods-action>
       <van-goods-action-icon icon="chat-o" text="客服" />
-      <van-goods-action-icon icon="cart-o" badge="1" @click="goTo" text="购物车" />
+      <van-goods-action-icon icon="cart-o" :badge="cartCount" @click="goTo" text="购物车" />
       <van-goods-action-button type="warning" @click="addCart" text="加入购物车" />
       <van-goods-action-button type="danger" @click="goToCart" text="立即购买" />
     </van-goods-action>
@@ -61,6 +61,12 @@ export default {
     ...mapState('cartAbout', ['cartInfo']),
     id() {
       return this.$route.params.id
+    },
+    cartCount() {
+      if (this.cartInfo.length === 0) return ''
+      return this.cartInfo.reduce((sum, item) => {
+        return sum + item.goodsCount
+      }, 0)
     }
   },
   methods: {
@@ -104,6 +110,10 @@ export default {
   },
   created() {
     this.initPageDetail()
+  },
+  updated() {
+    const img = document.querySelector('.product-content img')
+    img.style.width = '100%'
   }
 }
 </script>
