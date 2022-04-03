@@ -11,6 +11,10 @@ export default {
     navTitle: {
       type: String,
       default: ''
+    },
+    back: {
+      type: String,
+      default: ''
     }
   },
   methods: {

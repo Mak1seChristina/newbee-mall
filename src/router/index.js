@@ -9,6 +9,8 @@ import Cart from '@/views/Cart/Cart.vue'
 import User from '@/views/User/User.vue'
 import ProductDetail from '@/views/ProductDetail/ProductDetail.vue'
 import CreateOrder from '@/views/CreateOrder/CreateOrder.vue'
+import Address from '@/views/Address/Address.vue'
+import AddressEdit from '@/views/AddressEdit/AddressEdit.vue'
 
 Vue.use(VueRouter)
 
@@ -37,6 +39,16 @@ const routes = [
     path: '/create-order',
     component: CreateOrder,
     name: 'create-order'
+  },
+  {
+    path: '/address',
+    component: Address,
+    name: 'address'
+  },
+  {
+    path: '/address-edit',
+    component: AddressEdit,
+    name: 'address-edit'
   }
 ]
 

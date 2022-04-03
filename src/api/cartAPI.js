@@ -15,3 +15,7 @@ export const modifyCart = params => {
 export const deleteCartItem = id => {
   return http.delete(`/shop-cart/${id}`)
 }
+
+export const getByCartItemIds = params => {
+  return http.get('/shop-cart/settle', { params })
+}
