@@ -11,45 +11,43 @@
       <van-icon class="arrow" name="arrow" />
     </div>
     <div class="good">
-      <div class="good-item" v-for="item in cartList" :key="item.cartItemId">
-        <div class="good-img">
-          <img :src="item.goodsCoverImg" alt="" />
-        </div>
-        <div class="good-desc">
-          <div class="good-title">
-            <span>{{ item.goodsName }}</span>
-            <span>×{{ item.goodsCount }}</span>
-          </div>
-          <div class="good-btn">
-            <div class="price">¥{{ item.sellingPrice }}</div>
-          </div>
-        </div>
-      </div>
+      <goods-item-in-cart v-for="item in cartList" :key="item.cartItemId" :goodInfo="item"></goods-item-in-cart>
     </div>
     <div class="pay-wrap">
       <div class="price">
         <span>商品金额</span>
         <span>¥{{ totalPrice }}</span>
       </div>
-      <van-button class="pay-btn" color="#1baeae" type="primary" block>生成订单</van-button>
+      <van-button class="pay-btn" color="#1baeae" type="primary" block @click="createOrder">生成订单</van-button>
     </div>
+    <van-popup v-model="show" :close-on-click-overlay="false" closeable position="bottom" :style="{ height: '30%' }" @close="close">
+      <div :style="{ width: '90%', margin: '0 auto', padding: '50px 0' }">
+        <van-button :style="{ marginBottom: '10px' }" color="#1989fa" block @click="payOrder(1)">支付宝支付</van-button>
+        <van-button color="#4fc08d" block @click="payOrder(2)">微信支付</van-button>
+      </div>
+    </van-popup>
   </div>
 </template>
 
 <script>
 import SimpleHeader from '@/components/SimpleHeader/SimpleHeader.vue'
+import GoodsItemInCart from '@/components/GoodsItem/GoodsItemInCart.vue'
 import { getByCartItemIds } from '@/api/cartAPI.js'
 import { getDefaultAddress, getAddressDetail } from '@/api/addressAPI.js'
+import { createOrder, payOrder } from '@/api/orderAPI.js'
 
 export default {
   name: 'CreateOrder',
   components: {
-    SimpleHeader
+    SimpleHeader,
+    GoodsItemInCart
   },
   data() {
     return {
       cartList: [],
-      address: []
+      address: {},
+      show: false,
+      orderNum: ''
     }
   },
   computed: {
@@ -74,6 +72,28 @@ export default {
     },
     goAddress() {
       this.$router.push({ path: `/address?addressId=${this.address.addressId}` })
+    },
+    async createOrder() {
+      const params = {
+        addressId: this.address.addressId,
+        cartItemIds: this.cartList.map(item => item.cartItemId)
+      }
+      const { data: res } = await createOrder(params)
+      if (res.resultCode === 200) {
+        // 移除本地存储中的 cartItemIds
+        localStorage.setItem('cartItemIds', '')
+        this.orderNum = res.data
+      }
+      this.show = true
+    },
+    async payOrder(type) {
+      const { data: res } = await payOrder({ orderNo: this.orderNum, payType: type })
+      if (res.resultCode === 200) {
+        this.$router.push({ path: '/order' })
+      }
+    },
+    close() {
+      this.$router.push({ path: '/order' })
     }
   },
   created() {
@@ -127,41 +147,6 @@ export default {
   }
   .good {
     margin-bottom: 120px;
-  }
-  .good-item {
-    padding: 10px;
-    background: #fff;
-    display: flex;
-    .good-img {
-      img {
-        .wh(100px, 100px);
-      }
-    }
-    .good-desc {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      flex: 1;
-      padding: 20px;
-      .good-title {
-        display: flex;
-        justify-content: space-between;
-        font-size: 12px;
-      }
-      .good-btn {
-        display: flex;
-        justify-content: space-between;
-        .price {
-          font-size: 16px;
-          color: red;
-          line-height: 28px;
-        }
-        .van-icon-delete {
-          font-size: 20px;
-          margin-top: 4px;
-        }
-      }
-    }
   }
   .pay-wrap {
     position: fixed;

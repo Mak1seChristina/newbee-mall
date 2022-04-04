@@ -7,7 +7,37 @@ import md5 from 'js-md5'
 
 import { prefix } from '@/common/js/utils.js'
 
-import { Button, NavBar, Form, Field, Toast, Tabbar, TabbarItem, Icon, Swipe, SwipeItem, Lazyload, GoodsAction, GoodsActionIcon, GoodsActionButton, Stepper, Checkbox, CheckboxGroup, SwipeCell, SubmitBar, ContactCard, AddressList, AddressEdit } from 'vant'
+import {
+  Button,
+  NavBar,
+  Form,
+  Field,
+  Toast,
+  Tabbar,
+  TabbarItem,
+  Icon,
+  Swipe,
+  SwipeItem,
+  Lazyload,
+  GoodsAction,
+  GoodsActionIcon,
+  GoodsActionButton,
+  Stepper,
+  Checkbox,
+  CheckboxGroup,
+  SwipeCell,
+  SubmitBar,
+  ContactCard,
+  AddressList,
+  AddressEdit,
+  Popup,
+  Tab,
+  Tabs,
+  Card,
+  List,
+  PullRefresh,
+  Dialog
+} from 'vant'
 
 Vue.config.productionTip = false
 
@@ -33,6 +63,13 @@ Vue.use(Button)
   .use(ContactCard)
   .use(AddressList)
   .use(AddressEdit)
+  .use(Popup)
+  .use(Tab)
+  .use(Tabs)
+  .use(Card)
+  .use(List)
+  .use(PullRefresh)
+  .use(Dialog)
 
 new Vue({
   router,

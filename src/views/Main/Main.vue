@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Main',
@@ -40,12 +40,14 @@ export default {
     }
   },
   methods: {
+    ...mapActions('cartAbout', ['updateCart']),
     cartFilter(value) {
       this.cartArr = value
     }
   },
   created() {
     this.cartFilter()
+    this.updateCart()
   }
 }
 </script>
