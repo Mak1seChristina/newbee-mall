@@ -113,7 +113,7 @@ export default {
   },
   updated() {
     const img = document.querySelector('.product-content img')
-    img.style.width = '100%'
+    if (img) img.style.width = '100%'
   }
 }
 </script>

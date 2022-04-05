@@ -36,7 +36,10 @@ import {
   Card,
   List,
   PullRefresh,
-  Dialog
+  Dialog,
+  Search,
+  Sidebar,
+  SidebarItem
 } from 'vant'
 
 Vue.config.productionTip = false
@@ -70,6 +73,9 @@ Vue.use(Button)
   .use(List)
   .use(PullRefresh)
   .use(Dialog)
+  .use(Search)
+  .use(Sidebar)
+  .use(SidebarItem)
 
 new Vue({
   router,
