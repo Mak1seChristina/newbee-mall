@@ -129,7 +129,7 @@ export default {
       if (this.token) {
         this.isLogin = true
         try {
-          this.updateCart()
+          // this.updateCart()
         } catch (err) {}
       }
 

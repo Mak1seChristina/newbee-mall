@@ -1,6 +1,7 @@
 <template>
   <div class="login">
-    <van-nav-bar :title="navTitle" left-text="返回" left-arrow @click-left="onClickLeft" fixed placeholder />
+    <!-- <van-nav-bar :title="navTitle" left-text="返回" left-arrow @click-left="onClickLeft" fixed placeholder /> -->
+    <simple-header :navTitle="navTitle" :back="'/home'"></simple-header>
     <img src="@/assets/mlogo.png" alt="" id="logo" />
     <van-form @submit="onSubmit">
       <van-field v-model="mobile" type="tel" label="手机号码" placeholder="请输入手机号码" :rules="rules.mobile" />
@@ -21,9 +22,13 @@ import { loginAPI, registerAPI } from '@/api/userAPI.js'
 // 导入 mutations 映射
 import { mapMutations } from 'vuex'
 import { Toast } from 'vant'
+import SimpleHeader from '@/components/SimpleHeader/SimpleHeader.vue'
 
 export default {
   name: 'Login',
+  components: {
+    SimpleHeader
+  },
   data() {
     return {
       isLogin: true,

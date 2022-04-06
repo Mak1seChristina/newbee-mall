@@ -39,7 +39,8 @@ import {
   Dialog,
   Search,
   Sidebar,
-  SidebarItem
+  SidebarItem,
+  Image as VanImage
 } from 'vant'
 
 Vue.config.productionTip = false
@@ -76,6 +77,7 @@ Vue.use(Button)
   .use(Search)
   .use(Sidebar)
   .use(SidebarItem)
+  .use(VanImage)
 
 new Vue({
   router,

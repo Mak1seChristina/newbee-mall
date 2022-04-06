@@ -20,6 +20,10 @@ export default {
     },
     saveStateToStorage(state) {
       localStorage.setItem('token', state.token)
+    },
+    clearState(state) {
+      state.token = ''
+      this.commit('userAbout/saveStateToStorage')
     }
   },
   getters: {}

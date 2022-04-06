@@ -46,8 +46,9 @@ export default {
     }
   },
   created() {
+    const token = localStorage.getItem('token')
     this.cartFilter()
-    this.updateCart()
+    if (token) this.updateCart()
   }
 }
 </script>

@@ -14,6 +14,7 @@ import AddressEdit from '@/views/AddressEdit/AddressEdit.vue'
 import Order from '@/views/Order/Order.vue'
 import OrderDetail from '@/views/OrderDetail/OrderDetail.vue'
 import ProductList from '@/views/ProductList/ProductList.vue'
+import UserSetting from '@/views/UserSetting/UserSetting.vue'
 
 Vue.use(VueRouter)
 
@@ -68,6 +69,11 @@ const routes = [
     path: '/product-list',
     component: ProductList,
     name: 'product-list'
+  },
+  {
+    path: '/user-setting',
+    component: UserSetting,
+    name: 'user-setting'
   }
 ]
 

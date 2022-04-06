@@ -2,7 +2,7 @@
   <div class="product-list-wrap">
     <van-nav-bar left-arrow fixed placeholder @click-left="goBack">
       <template #title>
-        <van-search shape="round" v-model="keyword" />
+        <van-search shape="round" v-model="keyword" ref="searchInput" />
       </template>
       <template #right>
         <span class="search-btn" @click="getSearch">搜索</span>
@@ -78,7 +78,6 @@ export default {
       this.$router.go(-1)
     },
     onLoad() {
-      console.log('执行下拉加载')
       !this.isLoading && !this.finished && this.initProList()
     },
     onRefresh() {
@@ -102,6 +101,15 @@ export default {
     productDetail(id) {
       this.$router.push({ path: `/product/${id}` })
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      // 当通过点击搜索框跳转至商品列表页面时，搜索框自动对焦
+      if (this.$route.query.from === 'category') {
+        const input = document.querySelector('input.van-field__control')
+        input.focus()
+      }
+    })
   }
 }
 </script>
