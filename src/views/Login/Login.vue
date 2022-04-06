@@ -73,7 +73,9 @@ export default {
         const { data: res } = await loginAPI(params)
         if (res.resultCode === 200) {
           this.updateToken(res.data)
-          this.$router.replace('/')
+          // 跳转至登录未遂的路径
+          const prePath = this.$route.query.pre || '/'
+          this.$router.replace(prePath)
         }
       } else {
         const params = {

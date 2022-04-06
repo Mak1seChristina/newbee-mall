@@ -16,6 +16,15 @@ import OrderDetail from '@/views/OrderDetail/OrderDetail.vue'
 import ProductList from '@/views/ProductList/ProductList.vue'
 import UserSetting from '@/views/UserSetting/UserSetting.vue'
 
+import store from '@/store/index.js'
+
+// 解决 vue-router 报错问题
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
+}
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -79,6 +88,24 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+const pathArr = ['/', '/home', '/category', '/login']
+// 全局前置守卫，路由验证
+router.beforeEach((to, from, next) => {
+  if (pathArr.indexOf(to.path) !== -1) {
+    // 访问无权限页面
+    next()
+  } else {
+    // 访问有权限页面
+    const token = store.state.userAbout.token
+    if (token) {
+      next()
+    } else {
+      // 记录跳转未遂的路径，以便登录后直接跳转至该路径
+      next(`/login?pre=${to.fullPath}`)
+    }
+  }
 })
 
 export default router
