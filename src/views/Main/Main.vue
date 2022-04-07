@@ -1,6 +1,8 @@
 <template>
   <div>
-    <router-view @getCartItem="cartFilter"></router-view>
+    <keep-alive exclude="Home,Category">
+      <router-view @getCartItem="cartFilter"></router-view>
+    </keep-alive>
 
     <van-tabbar v-model="active" active-color="rgb(27, 174, 174)" route placeholder>
       <van-tabbar-item replace to="/" icon="home-o">首页</van-tabbar-item>
@@ -48,7 +50,7 @@ export default {
   created() {
     const token = localStorage.getItem('token')
     this.cartFilter()
-    if (token) this.updateCart()
+    token && this.updateCart()
   }
 }
 </script>

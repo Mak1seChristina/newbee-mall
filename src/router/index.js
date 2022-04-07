@@ -38,56 +38,99 @@ const routes = [
     component: Main,
     alias: '/home',
     children: [
-      { path: '/', component: Home, name: 'home' },
-      { path: '/category', component: Category, name: 'category' },
-      { path: '/cart', component: Cart, name: 'cart' },
-      { path: '/user', component: User, name: 'user' }
+      { path: '/', component: Home, name: 'home', meta: { index: 1 } },
+      { path: '/category', component: Category, name: 'category', meta: { index: 1 } },
+      { path: '/cart', component: Cart, name: 'cart', meta: { index: 1, isAlive: true } },
+      { path: '/user', component: User, name: 'user', meta: { index: 1, isAlive: true } }
     ]
   },
   {
     path: '/product/:id',
     component: ProductDetail,
-    name: 'product-detail'
+    name: 'product-detail',
+    props: true,
+    meta: {
+      top: 0,
+      isRecord: true,
+      index: 3,
+      isAlive: true
+    }
   },
   {
     path: '/create-order',
     component: CreateOrder,
-    name: 'create-order'
+    name: 'create-order',
+    meta: {
+      index: 2
+    }
   },
   {
     path: '/address',
     component: Address,
-    name: 'address'
+    name: 'address',
+    meta: {
+      index: 3
+    }
   },
   {
     path: '/address-edit',
     component: AddressEdit,
-    name: 'address-edit'
+    name: 'address-edit',
+    meta: {
+      index: 4
+    }
   },
   {
     path: '/order',
     component: Order,
-    name: 'order'
+    name: 'order',
+    meta: {
+      index: 2
+    }
   },
   {
     path: '/order-detail',
     component: OrderDetail,
-    name: 'order-detail'
+    name: 'order-detail',
+    meta: {
+      index: 3
+    }
   },
   {
     path: '/product-list',
     component: ProductList,
-    name: 'product-list'
+    name: 'product-list',
+    meta: {
+      index: 2
+    }
   },
   {
     path: '/user-setting',
     component: UserSetting,
-    name: 'user-setting'
+    name: 'user-setting',
+    meta: {
+      index: 2,
+      isAlive: true
+    }
   }
 ]
 
+// 延迟滚动
+const scrollBehavior = (to, from, savedPosition) => {
+  if (from.meta.isRecord) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({ top: 0 })
+      }, 500)
+    })
+  } else {
+    return { top: 0 }
+  }
+}
+
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior
 })
 
 const pathArr = ['/', '/home', '/category', '/login']

@@ -12,10 +12,13 @@ const http = axios.create({
 http.interceptors.request.use(
   config => {
     // 展示 loading 效果
-    Toast.loading({
-      message: '加载中...',
-      duration: 0
-    })
+    /* setTimeout(() => {
+      Toast.loading({
+        message: '加载中...',
+        duration: 0
+      })
+    }, 20) */
+
     // 获取 token 值
     const tokenStr = userStore.state.token
     // 请求头中添加 token
@@ -40,9 +43,9 @@ http.interceptors.response.use(
     }
     if (res.data.resultCode !== 200) {
       if (res.data.message) Toast.fail(res.data.message)
-      /* if (res.data.resultCode === 416) {
+      if (res.data.resultCode === 416) {
         router.push({ path: '/login' })
-      } */
+      }
       return Promise.reject(res.data)
     }
     return res

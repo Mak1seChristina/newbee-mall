@@ -57,11 +57,12 @@ export default {
       }
     }
   },
+  props: ['id'],
   computed: {
     ...mapState('cartAbout', ['cartInfo']),
-    id() {
+    /* id() {
       return this.$route.params.id
-    },
+    }, */
     cartCount() {
       if (this.cartInfo.length === 0) return ''
       return this.cartInfo.reduce((sum, item) => {
@@ -111,9 +112,41 @@ export default {
   created() {
     this.initPageDetail()
   },
+  mounted() {
+    this.$nextTick(() => {
+      window.scrollTo(0, 0)
+    })
+  },
   updated() {
     const img = document.querySelector('.product-content img')
     if (img) img.style.width = '100%'
+  },
+  beforeRouteLeave(to, from, next) {
+    // 将位置记录至meta
+    const scrollTop = window.pageYOffset
+    from.meta.top = scrollTop
+    next()
+  },
+  beforeRouteEnter(to, from, next) {
+    // 滚动条滚动至记录的位置
+    const top = to.meta.top
+    next(vm => {
+      vm.$nextTick(() => {
+        window.scrollTo(0, top)
+      })
+    })
+  },
+  watch: {
+    id() {
+      // 商品 id 改变时刷新页面
+      this.detail = {
+        goodsCarouselList: []
+      }
+      this.initPageDetail()
+      this.$nextTick(() => {
+        window.scrollTo(0, 0)
+      })
+    }
   }
 }
 </script>
