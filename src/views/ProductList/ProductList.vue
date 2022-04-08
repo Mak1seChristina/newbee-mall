@@ -75,7 +75,7 @@ export default {
       }
     },
     goBack() {
-      this.$router.go(-1)
+      this.$router.push({ path: '/category' })
     },
     onLoad() {
       !this.isLoading && !this.finished && this.initProList()
@@ -99,7 +99,7 @@ export default {
       this.onRefresh()
     },
     productDetail(id) {
-      this.$router.push({ path: `/product/${id}` })
+      this.$router.push({ path: `/product/${id}?keyword=${this.keyword}` })
     }
   },
   mounted() {

@@ -1,6 +1,6 @@
 <template>
   <div class="product-detail">
-    <simple-header :navTitle="'商品详情'"></simple-header>
+    <simple-header :navTitle="'商品详情'" :keyword="$route.query.keyword"></simple-header>
     <div class="detail-content">
       <div class="detail-swipe-wrap">
         <van-swipe class="my-swipe" indicator-color="#1baeae">

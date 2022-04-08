@@ -15,10 +15,18 @@ export default {
     back: {
       type: String,
       default: ''
+    },
+    keyword: {
+      type: String,
+      default: ''
     }
   },
   methods: {
     onClickLeft() {
+      if (this.keyword) {
+        this.$router.push({ path: `/product-list?from=category&keyword=${this.keyword}` })
+        return
+      }
       if (!this.back) {
         this.$router.go(-1)
       } else {
