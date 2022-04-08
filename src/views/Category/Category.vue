@@ -64,7 +64,7 @@ export default {
       }
     },
     goHome() {
-      this.$router.push({ path: '/home' })
+      this.$router.push({ path: '/' })
     },
     goProductList(id) {
       this.$router.push({ path: `/product-list?categoryId=${id}` })

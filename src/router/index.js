@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Login from '@/views/Login/Login.vue'
+import store from '@/store/index.js'
+
+/* import Login from '@/views/Login/Login.vue'
 import Main from '@/views/Main/Main.vue'
 import Home from '@/views/Home/Home.vue'
 import Category from '@/views/Category/Category.vue'
@@ -14,9 +16,22 @@ import AddressEdit from '@/views/AddressEdit/AddressEdit.vue'
 import Order from '@/views/Order/Order.vue'
 import OrderDetail from '@/views/OrderDetail/OrderDetail.vue'
 import ProductList from '@/views/ProductList/ProductList.vue'
-import UserSetting from '@/views/UserSetting/UserSetting.vue'
+import UserSetting from '@/views/UserSetting/UserSetting.vue' */
 
-import store from '@/store/index.js'
+const Login = () => import('@/views/Login/Login.vue')
+const Main = () => import('@/views/Main/Main.vue')
+const Home = () => import('@/views/Home/Home.vue')
+const Category = () => import('@/views/Category/Category.vue')
+const Cart = () => import('@/views/Cart/Cart.vue')
+const User = () => import('@/views/User/User.vue')
+const ProductDetail = () => import('@/views/ProductDetail/ProductDetail.vue')
+const CreateOrder = () => import('@/views/CreateOrder/CreateOrder.vue')
+const Address = () => import('@/views/Address/Address.vue')
+const AddressEdit = () => import('@/views/AddressEdit/AddressEdit.vue')
+const Order = () => import('@/views/Order/Order.vue')
+const OrderDetail = () => import('@/views/OrderDetail/OrderDetail.vue')
+const ProductList = () => import('@/views/ProductList/ProductList.vue')
+const UserSetting = () => import('@/views/UserSetting/UserSetting.vue')
 
 // 解决 vue-router 报错问题
 const originalPush = VueRouter.prototype.push

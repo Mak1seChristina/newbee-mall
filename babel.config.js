@@ -10,6 +10,7 @@ module.exports = {
         style: name => `${name}/style/less`
       },
       'vant'
-    ]
+    ],
+    '@babel/plugin-syntax-dynamic-import'
   ]
 }
